@@ -116,39 +116,34 @@ if ($result === false) {
     <table class="table table-bordered table-hover mt-3">
         <thead class="thead-dark">
             <tr>
-                <th>Código</th>
                 <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descuento</th>
                 <th>Descripción</th>
-                <th>ID Categoría</th>
-                <th>Activo</th>
-                <th>Acciones</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Proveedor</th>
             </tr>
         </thead>
         <tbody>
         <?php while($row = $result->fetch_assoc()) : ?>
             <tr>
-                <td><?= htmlspecialchars($row['Codigo']) ?></td>
                 <td><?= htmlspecialchars($row['Nombre']) ?></td>
-                <td><?= htmlspecialchars($row['Precio']) ?></td>
-                <td><?= htmlspecialchars($row['Descuento']) ?></td>
                 <td><?= htmlspecialchars($row['Descripcion']) ?></td>
-                <td><?= htmlspecialchars($row['id_categoria']) ?></td>
-                <td><?= $row['Activo'] ? 'Sí' : 'No' ?></td>
+                <td><?= htmlspecialchars($row['Stock']) ?></td>
+                <td><?= htmlspecialchars($row['Precio']) ?></td>
+                <td><?= htmlspecialchars($row['Proveedor_id']) ?></td>
                 <td>
                     <form method="post" class="d-inline" onsubmit="return confirm ('¿Estas seguro de que deseas eliminar el producto?');">
-                        <input type="hidden" name="id_producto" value="<?= $row['Codigo'] ?>">
+                        <input type="hidden" name="id_producto" value="<?= $row['material_id'] ?>">
                         <button type="submit" class="btn btn-danger btn-sm" name="eliminar_producto">Eliminar</button>
                     </form>
                     <!-- Botón para modificar -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalModificar<?= $row['Codigo'] ?>">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalModificar<?= $row['material_id'] ?>">
                         Modificar
                     </button>
                 </td>
             </tr>
             <!-- Modal de Modificación -->
-            <div class="modal fade" id="modalModificar<?= $row['Codigo'] ?>" tabindex="-1">
+            <div class="modal fade" id="modalModificar<?= $row['material_id'] ?>" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -157,31 +152,27 @@ if ($result === false) {
                         </div>
                         <div class="modal-body">
                             <form method="post">
-                                <input type="hidden" name="id_producto" value="<?= $row['Codigo'] ?>">
+                                <input type="hidden" name="id_producto" value="<?= $row['material_id'] ?>">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" value="<?= htmlspecialchars($row['Nombre']) ?>" required>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="descripcion" class="form-label">Descripcion</label>
+                                    <input type="number" class="form-control" name="descripcion" value="<?= htmlspecialchars($row['Descripcion']) ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label">Cantidad</label>
+                                    <input type="number" class="form-control" name="cantidad" value="<?= htmlspecialchars($row['Stock']) ?>">
+                                </div>
+                                <div class="mb-3">
                                     <label for="precio" class="form-label">Precio</label>
-                                    <input type="number" class="form-control" name="precio" value="<?= htmlspecialchars($row['Precio']) ?>" required>
+                                    <textarea class="form-control" name="precio" rows="3"><?= htmlspecialchars($row['Precio']) ?></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="descuento" class="form-label">Descuento</label>
-                                    <input type="number" class="form-control" name="descuento" value="<?= htmlspecialchars($row['Descuento']) ?>">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="descripcion" class="form-label">Descripción</label>
-                                    <textarea class="form-control" name="descripcion" rows="3"><?= htmlspecialchars($row['Descripcion']) ?></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="id_categoria" class="form-label">ID Categoría</label>
-                                    <input type="number" class="form-control" name="id_categoria" value="<?= htmlspecialchars($row['id_categoria']) ?>" required>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="activo" <?= $row['Activo'] ? 'checked' : '' ?>>
-                                    <label class="form-check-label">Activo</label>
-                                </div>
+                                    <label for="proveedor_id" class="form-label">Proveedor</label>
+                                    <input type="number" class="form-control" name="proveedor_id" value="<?= htmlspecialchars($row['proveedor_id']) ?>" required>
+                                </div>                                
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success" name="modificar_producto">Guardar Cambios</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -211,24 +202,20 @@ if ($result === false) {
                         <input type="text" class="form-control" name="nombre" required>
                     </div>
                     <div class="mb-3">
-                        <label for="precio" class="form-label">Precio</label>
-                        <input type="number" class="form-control" name="precio" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descuento" class="form-label">Descuento</label>
-                        <input type="number" class="form-control" name="descuento">
-                    </div>
-                    <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                        <input type="text" class="form-control" name="descripcion" required>
                     </div>
                     <div class="mb-3">
-                        <label for="id_categoria" class="form-label">ID Categoría</label>
-                        <input type="number" class="form-control" name="id_categoria" required>
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="activo">
-                        <label class="form-check-label">Activo</label>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="proveedor_id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="proveedor_id" class="form-label">Proveedor</label>
+                        <input type="text" class="form-control" name="descripcion" required>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="insertar_producto">Guardar Producto</button>
