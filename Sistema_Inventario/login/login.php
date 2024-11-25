@@ -1,5 +1,5 @@
 <?php
-include ('conexion/conexion.php');
+include ('../conexion/conexion.php');
 
 // Inicializar variable para errores
 $error = "";
@@ -38,13 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     // Redirigir según el rol
                     switch ($usuario['rol']) {
                         case 'admin':
-                            header("Location: roles/index_admin.php");
+                            header("Location: ../roles/administrativo/index_admin.php");
                             break;
                         case 'gestor':
-                            header("Location: roles/index_gestor.php");
+                            header("Location: ../roles/administrativo/index_gestor.php");
                             break;
                         case 'ingeniero':
-                            header("Location: roles/index_ingeniero.php");
+                            header("Location: ../roles/administrativo/index_ingeniero.php");
                             break;
                         default:
                             $error = "Rol desconocido.";
