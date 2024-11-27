@@ -3,7 +3,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $contraseña = "";
-$base_datos ="sistema_inventario";
+$base_datos ="sistemas_inventario";
 
 //crear conexion
 $conexion = new mysqli($servidor, $usuario, $contraseña, $base_datos);
@@ -15,3 +15,5 @@ if ($conexion->connect_error) {
 }else{
     "Conexion exitosa";
 }
+
+?>

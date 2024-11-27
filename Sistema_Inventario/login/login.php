@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include ('../conexion/conexion.php');
 
 // Inicializar variable para errores
@@ -41,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             header("Location: ../roles/administrativo/index_admin.php");
                             break;
                         case 'gestor':
-                            header("Location: ../roles/administrativo/index_gestor.php");
+                            header("Location: ../roles/gestor/index_gestor.php");
                             break;
                         case 'ingeniero':
-                            header("Location: ../roles/administrativo/index_ingeniero.php");
+                            header("Location: ../roles/ingeniero/index_ingeniero.php");
                             break;
                         default:
                             $error = "Rol desconocido.";
