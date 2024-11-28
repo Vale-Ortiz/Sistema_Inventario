@@ -19,7 +19,7 @@
 </head>
 <body>    
  <!-- Header -->
- <div id="header-container"></div> 
+ <div id="header-container1"></div> 
      <br>       
          <!-- Aquí se cargará dinámicamente el contenido -->
         <div id="contenido">      

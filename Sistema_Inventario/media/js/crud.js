@@ -13,6 +13,32 @@ function cargarComponentes() {
   })
   .catch(error => console.error('Error:', error));
 
+  // Cargar el archivo headergestor.html
+  fetch('../componentes/headergestor.php')
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al cargar el archivo header');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('header-container1').innerHTML = data;
+  })
+  .catch(error => console.error('Error:', error));
+
+  // Cargar el archivo headeringeniero.html
+  fetch('../componentes/headeringeniero.php')
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al cargar el archivo header');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('header-container2').innerHTML = data;
+  })
+  .catch(error => console.error('Error:', error));
+
   // Cargar el archivo footer.html
   fetch('../componentes/footer.php')
   .then(response => {

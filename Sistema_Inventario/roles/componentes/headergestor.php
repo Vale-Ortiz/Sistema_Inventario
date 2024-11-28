@@ -13,14 +13,12 @@
     <div class="header-content">
         <img src="../../media/image/php.png" alt="Logo de la Empresa" class="logo">
         <h1><?php echo $rol; ?></h1>
+
         <nav>
             <ul class="nav-links">
                 <li><a href="#" id="proyectos">Proyectos</a></li>
-                <li><a href="#" id="otorgamientos">Otorgamientos</a></li>
-                <li><a href="#" id="usuarios">Usuarios</a></li>
-                <li><a href="#" id="proveedores">Proveedores</a></li>
-                <li><a href="#" id="materiales">Materiales</a></li>
-                <li><a href="#" id="informes">Informes</a></li>
+                <li><a href="#" id="proyectos">Otorgamientos</a></li>
+                <li><a href="#" id="materiales">Materiales</a></li>                
                 <li><a href="#" id="desconectar">Cerrar Sesión</a></li>
             </ul>
             
