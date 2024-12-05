@@ -210,6 +210,158 @@ function cargarContenido() {
 }
 
 
+  // CRUD MATERIALES Cargar contenido de Materiales 
+
+        
+  $("body").on("click","#materiales",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido").load("../../crud_materiales/material.php");
+      }
+    });
+  });
+
+
+  $("body").on("click","#guardarmaterial",function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "../../crud_materiales/guardar.php",
+      data: $("#formularios").serialize(),
+      success: function(){
+        $("#contenido").load("../../crud_materiales/material.php");
+      }
+    });
+  });
+
+  $("body").on("click","#eliminarmaterial",function(e){
+    e.preventDefault();
+    var datos = {'codigo': $(this).attr('value')};
+    alert(datos.codigo);
+    $.ajax({
+      type: "POST",
+      url: "../../crud_materiales/eliminar.php",
+      data: datos,
+      success: function(){
+        $("#contenido").load("../../crud_materiales/material.php");
+      }
+    });
+  });
+
+
+  
+  // CRUD MATERIALES Cargar contenido de Materiales 
+
+        
+  $("body").on("click","#otorgamientos",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido").load("../../otorgamientos/otorgamientos.php");
+      }
+    });
+  });  
+
+  // -- Boton Consultar -- // 
+
+  $("body").on("click","#btnSeleccionarproyecto",function(e){
+    e.preventDefault();
+    var datos = {'operacion': $(this).attr('name'),          
+           'proyecto': $("#proyecto").val(),
+           };
+      $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+  });
+
+
+   // -- Boton Agregar Mas Materiales-- //  
+
+   $("body").on("click","#btnagregarmaterial",function(e){
+    e.preventDefault();
+    var datos = {'operacion': $(this).attr('name'),
+           'numser_codigo': $("#numser_codigo").val(),             
+           'cantidad': $("#cantidad").val(),             
+           
+          };
+          $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+  });
+
+   // ------- Boton Eliminar Cada Material Agregado ------------ //
+
+   $("body").on("click","#eliminarDetallematerial",function(e){
+    e.preventDefault();
+    var datos = {'codigo': $(this).attr('detalle')};
+    if (confirm('¿Esta Seguro que Desea Eliminar Este Material?')){ 
+        $.ajax({
+      type: "GET",
+      url: "../../otorgamientos/eliminarDetalle.php",
+      data: datos,
+      success: function(){
+        $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+      }
+    });
+     }
+  });
+
+        // -- Boton Otorgar -- //   
+
+       $("body").on("click","#guardarotorgamientos",function(e){
+          e.preventDefault();
+          var datos = {'operacion': $(this).attr('name'),
+                'documentol': $("#documentol").val(),
+                'ser_documento': $("#ser_documento").val(),
+                'total': $("#total").val()
+                };
+                $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+        }); 
+
+
+
+ // -- Boton Otorgar  -- //   
+
+      $("body").on("click","#btnguardarotorgar",function(e){
+        e.preventDefault();
+        var datos = {'operacion': $(this).attr('name'),
+              'usua': $("#usua").val(),              
+              };
+              $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+      }); 
+
+
+
+      // --- Boton Cancelar Sessiones 
+
+        $("body").on("click","#btncancelar1",function(e){
+          e.preventDefault();
+          var datos = {'operacion': $(this).attr('name')};
+          $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
+        });
+
+
+  // INFORMES Cargar contenido
+
+        
+  $("body").on("click","#informes",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido").load("../../informes/informes.php");
+      }
+    });
+  });  
+
+
+
+
+
+
+
+
+
+
+
+        
+
 // Ejecutar todas las funciones al cargar el documento
 document.addEventListener('DOMContentLoaded', function() {
   cargarComponentes(); // Cargar el header y footer

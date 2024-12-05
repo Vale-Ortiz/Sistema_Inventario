@@ -442,7 +442,7 @@ label {
 }
 
 /* Estilo para los campos de entrada */
-input, textarea, .btn1 {
+input, textarea, select, .btn1 {
     width: 100%; /* Hacer que los campos ocupen todo el ancho disponible */
     padding: 10px;
     margin-bottom: 16px; /* Espacio debajo de cada input */

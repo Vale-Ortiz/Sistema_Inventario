@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 14:53:25
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Tiempo de generación: 05-12-2024 a las 03:10:23
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema_inventario`
+-- Base de datos: `sistemas_inventario`
 --
 
 -- --------------------------------------------------------
@@ -65,6 +65,33 @@ CREATE TABLE `detalle_compras` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_otorgamientos`
+--
+
+CREATE TABLE `detalle_otorgamientos` (
+  `id_otorgamiento` int(11) NOT NULL,
+  `otorgamiento` int(11) NOT NULL,
+  `material` int(11) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_otorgamientos`
+--
+
+INSERT INTO `detalle_otorgamientos` (`id_otorgamiento`, `otorgamiento`, `material`, `fecha_registro`) VALUES
+(1, 1, 2, '2024-12-05 01:24:22'),
+(2, 2, 2, '2024-12-05 01:25:06'),
+(3, 3, 2, '2024-12-05 01:26:32'),
+(4, 3, 3, '2024-12-05 01:26:32'),
+(5, 4, 2, '2024-12-05 01:28:57'),
+(6, 5, 2, '2024-12-05 01:29:15'),
+(7, 6, 2, '2024-12-05 01:29:32'),
+(8, 8, 3, '2024-12-05 01:30:07');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `materiales`
 --
 
@@ -76,6 +103,14 @@ CREATE TABLE `materiales` (
   `precio` decimal(10,2) NOT NULL,
   `proveedor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `materiales`
+--
+
+INSERT INTO `materiales` (`material_id`, `nombre`, `descripcion`, `stock`, `precio`, `proveedor_id`) VALUES
+(2, 'Pala', 'rj', 10, 1000.00, 1),
+(3, 'Caba', 'da', 100, 1000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -101,11 +136,23 @@ CREATE TABLE `movimientos_bodega` (
 CREATE TABLE `otorgamientos` (
   `otorgamiento_id` int(11) NOT NULL,
   `proyecto_id` int(11) NOT NULL,
-  `material_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `otorgamientos`
+--
+
+INSERT INTO `otorgamientos` (`otorgamiento_id`, `proyecto_id`, `fecha`, `usuario_id`) VALUES
+(1, 1, '2024-12-04', 2),
+(2, 3, '2024-12-04', 2),
+(3, 1, '2024-12-04', 2),
+(4, 1, '2024-12-04', 2),
+(5, 1, '2024-12-04', 2),
+(6, 1, '2024-12-04', 2),
+(8, 3, '2024-12-04', 2),
+(10, 1, '2024-12-04', 2);
 
 -- --------------------------------------------------------
 
@@ -122,6 +169,14 @@ CREATE TABLE `proveedores` (
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`proveedor_id`, `nit`, `nombre`, `direccion`, `telefono`, `email`) VALUES
+(1, 2, 'carlos', 'dd', NULL, 'dd'),
+(3, 12, 'sffsdf', 'sfsf', '2323', 'sfd');
+
 -- --------------------------------------------------------
 
 --
@@ -137,6 +192,16 @@ CREATE TABLE `proyectos` (
   `presupuesto` decimal(15,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `proyectos`
+--
+
+INSERT INTO `proyectos` (`proyecto_id`, `nombre`, `descripcion`, `fecha_inicio`, `fecha_fin`, `presupuesto`) VALUES
+(1, 'ROBO AL BANCO', 'LISTO', '2024-11-27', '2027-11-03', 10000.00),
+(3, 'JOHNNER MEDINA PEREZ', 'dfdfdf', '2024-11-27', '2024-11-28', 1212.00),
+(5, 'JOHNNER MEDINA PEREZ', '', '0000-00-00', '0000-00-00', 0.00),
+(6, '', 'dd', '0000-00-00', '0000-00-00', 0.00);
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +215,15 @@ CREATE TABLE `usuarios` (
   `contraseña` varchar(255) NOT NULL,
   `rol` enum('ingeniero','admin','gestor') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario_id`, `nombre`, `correo`, `contraseña`, `rol`) VALUES
+(2, 'DIPLOMADO EN DOCENCIA UNIVERSITARIA', '2@gmail.com', '$2y$10$wMHbiuQnkkAKXuayeW2iu.hi.suqS.We.Z6VhBybykVniSZbwm/VW', 'admin'),
+(5, 'fe', 'ss@gmail.com', '$2y$10$L7Zhohb1TV9UyLRcxq84duxYWNT8CrWq0CWmpQgk7I5cGV76AcwAK', 'gestor'),
+(7, 'ger', 'j@gmail.com', '$2y$10$dnhGPrfORhV2haYSYy2q3e8ZIe94uK7aBIElv7e/SlvEify1k5Kfe', 'ingeniero');
 
 --
 -- Índices para tablas volcadas
@@ -178,6 +252,14 @@ ALTER TABLE `detalle_compras`
   ADD KEY `material_id` (`material_id`);
 
 --
+-- Indices de la tabla `detalle_otorgamientos`
+--
+ALTER TABLE `detalle_otorgamientos`
+  ADD PRIMARY KEY (`id_otorgamiento`),
+  ADD KEY `proyecto` (`otorgamiento`),
+  ADD KEY `material` (`material`);
+
+--
 -- Indices de la tabla `materiales`
 --
 ALTER TABLE `materiales`
@@ -198,7 +280,6 @@ ALTER TABLE `movimientos_bodega`
 ALTER TABLE `otorgamientos`
   ADD PRIMARY KEY (`otorgamiento_id`),
   ADD KEY `proyecto_id` (`proyecto_id`),
-  ADD KEY `material_id` (`material_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
@@ -244,10 +325,16 @@ ALTER TABLE `detalle_compras`
   MODIFY `detalle_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_otorgamientos`
+--
+ALTER TABLE `detalle_otorgamientos`
+  MODIFY `id_otorgamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `materiales`
 --
 ALTER TABLE `materiales`
-  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos_bodega`
@@ -259,25 +346,25 @@ ALTER TABLE `movimientos_bodega`
 -- AUTO_INCREMENT de la tabla `otorgamientos`
 --
 ALTER TABLE `otorgamientos`
-  MODIFY `otorgamiento_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `otorgamiento_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `proveedor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `proveedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `proyecto_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `proyecto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -298,6 +385,13 @@ ALTER TABLE `detalle_compras`
   ADD CONSTRAINT `detalle_compras_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `materiales` (`material_id`);
 
 --
+-- Filtros para la tabla `detalle_otorgamientos`
+--
+ALTER TABLE `detalle_otorgamientos`
+  ADD CONSTRAINT `detalle_otorgamientos_ibfk_1` FOREIGN KEY (`otorgamiento`) REFERENCES `otorgamientos` (`otorgamiento_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_otorgamientos_ibfk_2` FOREIGN KEY (`material`) REFERENCES `materiales` (`material_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `materiales`
 --
 ALTER TABLE `materiales`
@@ -315,7 +409,6 @@ ALTER TABLE `movimientos_bodega`
 --
 ALTER TABLE `otorgamientos`
   ADD CONSTRAINT `otorgamientos_ibfk_1` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`proyecto_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `otorgamientos_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `materiales` (`material_id`),
   ADD CONSTRAINT `otorgamientos_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
 COMMIT;
 

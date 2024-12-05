@@ -1,78 +1,82 @@
 <?php
     session_start(); 
       include("../conexion/b.php");
-              
-     $usuarios = $bd->query('SELECT * FROM usuarios ORDER BY usuario_id  desc' )->fetchAll(PDO::FETCH_OBJ);
+ $proveedorr = $bd->query('SELECT * FROM proveedores' )->fetchAll(PDO::FETCH_OBJ);
+
+  $materiales = $bd->query('SELECT materiales.material_id,materiales.nombre,materiales.descripcion,materiales.stock,materiales.precio,materiales.proveedor_id, proveedores.proveedor_id, proveedores.nombre AS provee FROM materiales, proveedores WHERE materiales.proveedor_id = proveedores.proveedor_id ORDER BY material_id  desc' )->fetchAll(PDO::FETCH_OBJ);
 ?>
 <div> <br><br> 
             <br>
             <br>        
-            <h2>Lista de Proveedores</h2>  
+            <h2>Lista de Materiales</h2>  
 <div class="header-content">
         
         <!-- Campo de búsqueda -->
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Buscar proyecto por nombre..." onkeyup="searchProjects()">
+            <input type="text" id="searchInput" placeholder="Buscar material por nombre..." onkeyup="searchProjects()">
         </section>
          <!-- Botón para mostrar el formulario -->
-         <button onclick="toggleForm()"><h3>Agregar Usuario</h3></button>
+         <button onclick="toggleForm()"><h3>Agregar Material</h3></button>
     </div>
         <!-- Formulario para agregar proyectos -->
         <section class="form-section" id="formSection" style="display: none;">
-            <h2>Agregar Usuario</h2>
+            <h2>Agregar Materiales</h2>
             <form id="formularios" class="form-grid">
                 <div class="left-side">
-                    <label for="nombre">Nombre </label>
+                    <label for="nombre">Nombre Articulo </label>
                     <input type="text" id="nombre" name="nombre" required>
 
-                    <label for="correo">Correo </label>
-                    <input type="text" id="correo" name="correo" required>
+                    <label for="des">Descripcion </label>
+                    <textarea id="descri" name="descri"></textarea>
+                   
                 </div>
                 <div class="right-side">
-                <label for="contraseña">Contraseña</label>
-                <input type="text" id="contraseña" name="contraseña">
-                <label for="nombre">Seleccione un rol </label>
-                <select id="rol" name="rol" required>
-                    <option value="">Seleccione un rol</option>
-                    <option value="admin">Admin</option>
-                    <option value="gestor">Gestor</option>
-                    <option value="ingeniero">Ingeniero</option>
+                <label for="Stock">Stock</label>
+                <input type="number" id="Stock" name="Stock">
+                <label for="Precio">Precio</label>
+                <input type="text" id="Precio" name="Stock">
+                <label for="nombre">Seleccione un Proveedor </label>
+                <select style="font-size: 24px; width: 440px;" name="prov" id="prov" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un proveedor</option> <!-- Opción por defecto que no se puede seleccionar -->
+                                    <?php foreach ($proveedorr as $pp) {
+                                        echo "<option value='" . $pp->proveedor_id . "'>" . $pp->nit ." ".$pp->nombre . "</option>";
+                                    } ?>
                 </select><br><br>
-                <button id="guardarusuario" class="btn1" type="submit">Guardar Usuarios</button> 
+                <button id="guardarmaterial" class="btn1" type="submit">Guardar Material</button> 
                 </div>
                 
-                
-               
             </form>
         </section>
 
         
 
-        <!-- Tabla de Proyectos -->
+        <!-- Tabla de Materiales -->
         <section>
         <table class="proyectos-table" id="projectsTable">
             <thead>
                 <tr>
-                    <th>ID usuario </th>
+                    <th>ID material </th>
                     <th>Nombre</th>
-                    <th>Correo </th>
-                    <th>Contraseña</th>
-                    <th>Rol</th>                    
+                    <th>Descripcion </th>
+                    <th>Stock</th>
+                    <th>Precio</th>                    
+                    <th>proveedor</th>                    
                     <th>Acciones</th> <!-- Columna para los botones -->
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($usuarios as $d):?>
+            <?php foreach ($materiales as $d):?>
                 <tr>
-                    <td data-label="ID"><?php echo $d->usuario_id    ?></td>
+                    <td data-label="ID"><?php echo $d->material_id     ?></td>
                     <td data-label="Nombre"><?php echo $d->nombre  ?></td>
-                    <td data-label="Correo"><?php echo $d->correo   ?></td>
-                    <td data-label="Contraseña"><?php echo $d->contraseña  ?></td>
-                    <td data-label="Rol"><?php echo $d->rol  ?></td>                    
+                    <td data-label="Descripcion"><?php echo $d->descripcion   ?></td>
+                    <td data-label="Stock"><?php echo $d->stock  ?></td>
+                    <td data-label="precio"><?php echo $d->precio  ?></td>                    
+                    <td data-label="proveedor"><?php echo $d->provee   ?></td>                    
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <button id="editarusuario" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
-                        <button id="eliminarusuario" class="btn-eliminar" value="<?php echo $d->usuario_id ?>">Eliminar</button>
+                        <button id="editarmaterial" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                        <button id="eliminarmaterial" class="btn-eliminar" value="<?php echo $d->material_id ?>">Eliminar</button>
                     </td>
                 </tr>               
                 <?php endforeach; ?>  
@@ -122,6 +126,14 @@
                 formSection.style.display = "none";
             }
         }
+
+
+
+     $('#prov').select2({
+        placeholder: "Buscar Proveedor...",  // Texto que aparece cuando el select está vacío
+        allowClear: true  // Permite borrar la selección
+    });
     </script>
 
 </div>   
+
