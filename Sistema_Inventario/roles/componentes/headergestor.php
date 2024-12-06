@@ -2,7 +2,7 @@
  session_start(); 
    if (isset($_SESSION['rol'])) {
        // La sesión está activa
-       "La sesión está activa. Bienvenido, " . $rol;
+       $rol = $_SESSION['rol'];
    } else {
        // No hay sesión activa
        echo "No has iniciado sesión. <a href='login.php'>Iniciar sesión</a>";

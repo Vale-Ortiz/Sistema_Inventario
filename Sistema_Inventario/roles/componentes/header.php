@@ -3,7 +3,6 @@
    if (isset($_SESSION['rol'])) {
        // La sesión está activa
        $rol = $_SESSION['rol'];
-        "La sesión está activa. Bienvenido, " . $rol;
    } else {
        // No hay sesión activa
        echo "No has iniciado sesión. <a href='login.php'>Iniciar sesión</a>";
