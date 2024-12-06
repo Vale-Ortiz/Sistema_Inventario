@@ -1,7 +1,7 @@
 <?php 
 try {
     // Crear la conexión a la base de datos
-    $bd = new PDO("mysql:host=localhost;dbname=sistemas_inventario", "root", "");
+    $bd = new PDO("mysql:host=localhost;dbname=sistema_inventario", "root", "");
     // Establecer el modo de manejo de errores
     $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Establecer la codificación de caracteres en UTF-8

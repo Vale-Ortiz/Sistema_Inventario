@@ -11,7 +11,7 @@
 ?>
 <header>
     <div class="header-content">
-        <img src="../../media/image/php.png" alt="Logo de la Empresa" class="logo">
+        <img src="../../media/image/Logo.jpg" alt="Logo de la Empresa" class="logo">
         <h1><?php echo $rol; ?></h1>
         <nav>
             <ul class="nav-links">

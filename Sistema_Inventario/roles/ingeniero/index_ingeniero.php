@@ -22,7 +22,7 @@
  <div id="header-container2"></div> 
      <br>       
          <!-- Aquí se cargará dinámicamente el contenido -->
-        <div id="contenido">      
+        <div id="contenido2">      
         </div>    
  <div id="footer-pie"></div>
  <script src="../../media/js/jquery.js"></script>

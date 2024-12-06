@@ -75,6 +75,7 @@ function cargarContenido() {
   $(document).ready(function() {
       // Cargar el contenido inicial
       $("#contenido").load("../../crub_proyecto/proyecto.php");
+      $("#contenido2").load("../../crub_proyecto/ver_proyectos.php");
 
       // CRUD PROYECTOS Cargar contenido de proyectos
 
@@ -86,6 +87,16 @@ function cargarContenido() {
               }
             });
           });
+
+          $("body").on("click","#verproyectos",function(e){
+            e.preventDefault();
+            $.ajax({
+              success: function(){
+                $("#contenido").load("../../crub_proyecto/ver_proyectos.php");
+              }
+            });
+          });
+          
 
        
 

@@ -52,10 +52,18 @@ if(isset($_POST["operacion"])&&$_POST["operacion"]=="guardarotorgamientos")
   
     foreach ( $_SESSION['Materialesa'] as $u)
     {
-      $bd->query("INSERT INTO detalle_otorgamientos VALUES(null,'$ultima','$u->material_id',CURRENT_TIMESTAMP)");
+      $bd->query("INSERT INTO detalle_otorgamientos VALUES(null,'$ultima','$u->material_id',CURRENT_TIMESTAMP, '$u->cantidadmaterial')");
          echo "<script>
                              alert('Otorgamiento de Materiales Realizado con Exito')           
           </script>";
+
+
+          $cantidaddeproductoenbodega = $u->stock;
+          $cantidaddeproductosolicitado = $u->cantidadmaterial;
+
+          $nuevostock = (($cantidaddeproductoenbodega) - ($cantidaddeproductosolicitado));
+      
+          $bd->query("UPDATE materiales SET stock=$nuevostock WHERE material_id='$u->material_id'");
     }
   
     $_SESSION['Materialesa']=null;

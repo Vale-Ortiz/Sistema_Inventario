@@ -12,7 +12,7 @@
         
         <!-- Campo de búsqueda -->
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Buscar proyecto por nombre..." onkeyup="searchProjects()">
+            <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchProjects()">
         </section>
          <!-- Botón para mostrar el formulario -->
          <button onclick="toggleForm()"><h3>Agregar Proveedor</h3></button>
