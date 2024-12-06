@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2024 a las 03:10:23
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Tiempo de generación: 06-12-2024 a las 23:16:52
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistemas_inventario`
+-- Base de datos: `sistema_inventario`
 --
 
 -- --------------------------------------------------------
@@ -72,22 +72,16 @@ CREATE TABLE `detalle_otorgamientos` (
   `id_otorgamiento` int(11) NOT NULL,
   `otorgamiento` int(11) NOT NULL,
   `material` int(11) NOT NULL,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_otorgamientos`
 --
 
-INSERT INTO `detalle_otorgamientos` (`id_otorgamiento`, `otorgamiento`, `material`, `fecha_registro`) VALUES
-(1, 1, 2, '2024-12-05 01:24:22'),
-(2, 2, 2, '2024-12-05 01:25:06'),
-(3, 3, 2, '2024-12-05 01:26:32'),
-(4, 3, 3, '2024-12-05 01:26:32'),
-(5, 4, 2, '2024-12-05 01:28:57'),
-(6, 5, 2, '2024-12-05 01:29:15'),
-(7, 6, 2, '2024-12-05 01:29:32'),
-(8, 8, 3, '2024-12-05 01:30:07');
+INSERT INTO `detalle_otorgamientos` (`id_otorgamiento`, `otorgamiento`, `material`, `fecha_registro`, `cantidad`) VALUES
+(17, 21, 6, '2024-12-06 21:29:56', 10);
 
 -- --------------------------------------------------------
 
@@ -109,8 +103,7 @@ CREATE TABLE `materiales` (
 --
 
 INSERT INTO `materiales` (`material_id`, `nombre`, `descripcion`, `stock`, `precio`, `proveedor_id`) VALUES
-(2, 'Pala', 'rj', 10, 1000.00, 1),
-(3, 'Caba', 'da', 100, 1000.00, 1);
+(6, 'Clavos', 'Clavos Inoxidables', 1, 500.00, 4);
 
 -- --------------------------------------------------------
 
@@ -145,14 +138,7 @@ CREATE TABLE `otorgamientos` (
 --
 
 INSERT INTO `otorgamientos` (`otorgamiento_id`, `proyecto_id`, `fecha`, `usuario_id`) VALUES
-(1, 1, '2024-12-04', 2),
-(2, 3, '2024-12-04', 2),
-(3, 1, '2024-12-04', 2),
-(4, 1, '2024-12-04', 2),
-(5, 1, '2024-12-04', 2),
-(6, 1, '2024-12-04', 2),
-(8, 3, '2024-12-04', 2),
-(10, 1, '2024-12-04', 2);
+(21, 9, '2024-12-06', 10);
 
 -- --------------------------------------------------------
 
@@ -174,8 +160,7 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`proveedor_id`, `nit`, `nombre`, `direccion`, `telefono`, `email`) VALUES
-(1, 2, 'carlos', 'dd', NULL, 'dd'),
-(3, 12, 'sffsdf', 'sfsf', '2323', 'sfd');
+(4, 2147483647, 'Learning System ', 'Carepa Antioquia ', '300 147 5881', 'learningsystem@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -197,10 +182,7 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`proyecto_id`, `nombre`, `descripcion`, `fecha_inicio`, `fecha_fin`, `presupuesto`) VALUES
-(1, 'ROBO AL BANCO', 'LISTO', '2024-11-27', '2027-11-03', 10000.00),
-(3, 'JOHNNER MEDINA PEREZ', 'dfdfdf', '2024-11-27', '2024-11-28', 1212.00),
-(5, 'JOHNNER MEDINA PEREZ', '', '0000-00-00', '0000-00-00', 0.00),
-(6, '', 'dd', '0000-00-00', '0000-00-00', 0.00);
+(9, 'Obra Crem ', 'Proyecto para moi', '2024-12-11', '2024-12-27', 710000.00);
 
 -- --------------------------------------------------------
 
@@ -221,9 +203,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `nombre`, `correo`, `contraseña`, `rol`) VALUES
-(2, 'DIPLOMADO EN DOCENCIA UNIVERSITARIA', '2@gmail.com', '$2y$10$wMHbiuQnkkAKXuayeW2iu.hi.suqS.We.Z6VhBybykVniSZbwm/VW', 'admin'),
-(5, 'fe', 'ss@gmail.com', '$2y$10$L7Zhohb1TV9UyLRcxq84duxYWNT8CrWq0CWmpQgk7I5cGV76AcwAK', 'gestor'),
-(7, 'ger', 'j@gmail.com', '$2y$10$dnhGPrfORhV2haYSYy2q3e8ZIe94uK7aBIElv7e/SlvEify1k5Kfe', 'ingeniero');
+(10, 'Valentina Ortiz', 'valen@gmail.com', '$2y$10$4hDMx3qmfCHLUEKT7uMuYutdARMITq/WFYVOu1mfve2MbirGBMczC', 'admin'),
+(11, 'Valentina Ortiz ', '2@gmail.com', '$2y$10$VY4Qp3XSOUfX8VMk6yOF1.9O.N4WoTx2zWm3lu7iETszeIPIHVir.', 'gestor'),
+(12, 'juanito', 'juanito@gmail.com', '$2y$10$AZgPhEV.da9lqV933DJ.EOWDAp0Gb.fgKkvnhkZsvs3.bxfjc/jsi', 'ingeniero');
 
 --
 -- Índices para tablas volcadas
@@ -328,13 +310,13 @@ ALTER TABLE `detalle_compras`
 -- AUTO_INCREMENT de la tabla `detalle_otorgamientos`
 --
 ALTER TABLE `detalle_otorgamientos`
-  MODIFY `id_otorgamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_otorgamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `materiales`
 --
 ALTER TABLE `materiales`
-  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `material_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos_bodega`
@@ -346,25 +328,25 @@ ALTER TABLE `movimientos_bodega`
 -- AUTO_INCREMENT de la tabla `otorgamientos`
 --
 ALTER TABLE `otorgamientos`
-  MODIFY `otorgamiento_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `otorgamiento_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `proveedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `proveedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `proyecto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `proyecto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
