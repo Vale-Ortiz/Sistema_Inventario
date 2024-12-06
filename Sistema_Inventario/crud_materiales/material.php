@@ -13,7 +13,7 @@
         
         <!-- Campo de búsqueda -->
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Buscar material por nombre..." onkeyup="searchProjects()">
+            <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchProjects()">
         </section>
          <!-- Botón para mostrar el formulario -->
          <button onclick="toggleForm()"><h3>Agregar Material</h3></button>
@@ -31,10 +31,10 @@
                    
                 </div>
                 <div class="right-side">
-                <label for="Stock">Stock</label>
+                <label for="Stock">Cantidad</label>
                 <input type="number" id="Stock" name="Stock">
-                <label for="Precio">Precio</label>
-                <input type="text" id="Precio" name="Stock">
+                <label for="Precio">Precio Unitario</label>
+                <input type="number" id="Precio" name="Precio">
                 <label for="nombre">Seleccione un Proveedor </label>
                 <select style="font-size: 24px; width: 440px;" name="prov" id="prov" class="form-control" required>
                                     <option value="" disabled selected>Seleccione un proveedor</option> <!-- Opción por defecto que no se puede seleccionar -->
@@ -58,8 +58,8 @@
                     <th>ID material </th>
                     <th>Nombre</th>
                     <th>Descripcion </th>
-                    <th>Stock</th>
-                    <th>Precio</th>                    
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>                    
                     <th>proveedor</th>                    
                     <th>Acciones</th> <!-- Columna para los botones -->
                 </tr>
@@ -70,8 +70,8 @@
                     <td data-label="ID"><?php echo $d->material_id     ?></td>
                     <td data-label="Nombre"><?php echo $d->nombre  ?></td>
                     <td data-label="Descripcion"><?php echo $d->descripcion   ?></td>
-                    <td data-label="Stock"><?php echo $d->stock  ?></td>
-                    <td data-label="precio"><?php echo $d->precio  ?></td>                    
+                    <td data-label="Cantidad"><?php echo $d->stock  ?></td>
+                    <td data-label="Stock"><?php echo $d->precio  ?></td>                    
                     <td data-label="proveedor"><?php echo $d->provee   ?></td>                    
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->

@@ -1,3 +1,4 @@
+
 <?php
     session_start(); 
       include("../conexion/b.php");
@@ -16,38 +17,9 @@
         <section class="search-section">
             <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchProjects()">
         </section>
-         <!-- Botón para mostrar el formulario -->
-         <button onclick="toggleForm()"><h3>Agregar Proyecto</h3></button>
+         
     </div>
-        <!-- Formulario para agregar proyectos -->
-        <section class="form-section" id="formSection" style="display: none;">
-            <h2>Agregar Proyecto</h2>
-            <form id="formulario" class="form-grid">
-                <div class="left-side">
-                    <label for="nombre">Nombre del Proyecto</label>
-                    <input type="text" id="nombre" name="nombre" required>
-
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion"></textarea>
-                </div>
-                <div class="right-side">
-                    <div class="input-group">
-                        <label for="fecha_inicio">Fecha de Inicio</label>
-                        <input type="date" id="fecha_inicio" name="fecha_inicio">
-
-                        <label for="fecha_fin">Fecha de Fin</label>
-                        <input type="date" id="fecha_fin" name="fecha_fin">
-                    </div>
-
-                    <label for="presupuesto">Presupuesto</label>
-                    <input type="number" id="presupuesto" name="presupuesto" step="0.01">
-
-                    <button id="guardarproyecto" class="btn1" type="submit">Guardar Proyecto</button>
-                </div>
-            </form>
-        </section>
-
-        
+             
 
         <!-- Tabla de Proyectos -->
         <section>
@@ -74,8 +46,7 @@
                     <td data-label="Presupuesto"><?php echo $d->presupuesto  ?></td>
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <button id="editarproyecto" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
-                        <button id="eliminarproyecto" class="btn-eliminar" value="<?php echo $d->proyecto_id ?>">Eliminar</button>
+                        <button id="editarproyecto" class="btn-actualizar" onclick="verproyectos(1)">Ver</button>
                     </td>
                 </tr>               
                 <?php endforeach; ?>  

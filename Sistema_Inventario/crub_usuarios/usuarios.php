@@ -13,7 +13,7 @@
         
         <!-- Campo de búsqueda -->
         <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Buscar proyecto por nombre..." onkeyup="searchProjects()">
+            <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchProjects()">
         </section>
          <!-- Botón para mostrar el formulario -->
          <button onclick="toggleForm()"><h3>Agregar Usuario</h3></button>
@@ -35,7 +35,6 @@
                 <label for="nombre">Seleccione un rol </label>
                 <select id="rol" name="rol" required>
                     <option value="">Seleccione un rol</option>
-                    <option value="admin">Admin</option>
                     <option value="gestor">Gestor</option>
                     <option value="ingeniero">Ingeniero</option>
                 </select><br><br>

@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raing Proyectos S.A.S</title>
     <link rel="stylesheet" href="../../media/css/style_hf.css">
+    <link href="../../media/css/select2.min.css" rel="stylesheet"/>
 </head>
 <body>    
  <!-- Header -->
@@ -26,6 +27,7 @@
         </div>    
  <div id="footer-pie"></div>
  <script src="../../media/js/jquery.js"></script>
+ <script src="../../media/js/select2.min.js"></script>
  <script src="../../media/js/crud.js"></script>
  
 </body>
