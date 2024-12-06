@@ -66,7 +66,7 @@
                        <br><h4>Materiales Otorgados</h4><br>
                     <div class="table-container" style="max-width: 100%; overflow-x: auto;">
                         <table class="table table-bordered table-hover" style="width: 100%; border-collapse: collapse;">
-                            <thead style="background-color: #4CAF50; color: white; text-align: center;">
+                            <thead style="background-color: #3b3b3a; color: white; text-align: center;">
                                 <tr>
                                     <th style="font-size: 14px; padding: 10px;"> Nº </th>
                                     <th style="font-size: 14px; padding: 10px;"> Nombre </th>

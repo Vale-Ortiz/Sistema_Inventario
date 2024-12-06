@@ -3,7 +3,7 @@
    if (isset($_SESSION['rol'])) {
        // La sesión está activa
        $rol = $_SESSION['rol'];
-       echo "La sesión está activa. Bienvenido, " . $rol;
+        "La sesión está activa. Bienvenido, " . $rol;
    } else {
        // No hay sesión activa
        echo "No has iniciado sesión. <a href='login.php'>Iniciar sesión</a>";
@@ -11,7 +11,7 @@
 ?>
 <header>
     <div class="header-content">
-        <img src="../../media/image/Logo.jpg" alt="Logo de la Empresa" class="logo">
+        <img src="../../media/image/Logo.png" alt="Logo de la Empresa" class="logo">
         <h1><?php echo $rol; ?></h1>
         <nav>
             <ul class="nav-links">
