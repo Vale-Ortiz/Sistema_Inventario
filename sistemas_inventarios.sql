@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2024 a las 23:16:52
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Tiempo de generación: 08-12-2024 a las 18:23:27
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema_inventario`
+-- Base de datos: `sistemas_inventarios`
 --
 
 -- --------------------------------------------------------
@@ -187,6 +187,27 @@ INSERT INTO `proyectos` (`proyecto_id`, `nombre`, `descripcion`, `fecha_inicio`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `solicitudes`
+--
+
+CREATE TABLE `solicitudes` (
+  `id_solicitudes` int(11) NOT NULL,
+  `proyecto_solicitud` int(11) NOT NULL,
+  `descrip_solicitud` varchar(254) NOT NULL,
+  `user_solicitud` int(11) NOT NULL,
+  `fecha_solicitud` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`id_solicitudes`, `proyecto_solicitud`, `descrip_solicitud`, `user_solicitud`, `fecha_solicitud`) VALUES
+(1, 9, 'djdjsdjksd', 12, '2024-12-07 02:52:03');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -278,6 +299,14 @@ ALTER TABLE `proyectos`
   ADD PRIMARY KEY (`proyecto_id`);
 
 --
+-- Indices de la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  ADD PRIMARY KEY (`id_solicitudes`),
+  ADD KEY `proyecto_solicitud` (`proyecto_solicitud`),
+  ADD KEY `user_solicitud` (`user_solicitud`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -343,6 +372,12 @@ ALTER TABLE `proyectos`
   MODIFY `proyecto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  MODIFY `id_solicitudes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -392,6 +427,13 @@ ALTER TABLE `movimientos_bodega`
 ALTER TABLE `otorgamientos`
   ADD CONSTRAINT `otorgamientos_ibfk_1` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`proyecto_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `otorgamientos_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
+
+--
+-- Filtros para la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  ADD CONSTRAINT `solicitudes_ibfk_1` FOREIGN KEY (`user_solicitud`) REFERENCES `usuarios` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `solicitudes_ibfk_2` FOREIGN KEY (`proyecto_solicitud`) REFERENCES `proyectos` (`proyecto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

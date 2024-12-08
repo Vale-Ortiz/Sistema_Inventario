@@ -1,54 +1,51 @@
-
 <?php
     session_start(); 
       include("../conexion/b.php");
-     
-       
-     $proyectos = $bd->query('SELECT * FROM proyectos ORDER BY proyecto_id  desc' )->fetchAll(PDO::FETCH_OBJ);
+      
+ $proyectos = $bd->query('SELECT * FROM proyectos' )->fetchAll(PDO::FETCH_OBJ);
+  $solicitudes = $bd->query('SELECT solicitudes.id_solicitudes,proyectos.nombre as pronombre,solicitudes.descrip_solicitud,
+   usuarios.nombre as usunombre, solicitudes.fecha_solicitud  FROM solicitudes, proyectos, usuarios 
+   WHERE solicitudes.proyecto_solicitud = proyectos.proyecto_id AND solicitudes.user_solicitud = usuarios.usuario_id 
+    ORDER BY id_solicitudes   desc' )->fetchAll(PDO::FETCH_OBJ);
 ?>
-
 <div> <br><br> 
             <br>
-            <br>
-        
-            <h2>Lista de Proyectos</h2>  
-<div class="header-content">
+            <br>        
+            <h2>Listar Solicitudes</h2>  
+ <div class="header-content">
         
         <!-- Campo de búsqueda -->
         <section class="search-section">
             <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchProjects()">
-        </section>
-         
+        </section>        
     </div>
-             
+              
 
-        <!-- Tabla de Proyectos -->
+        <!-- Tabla de Materiales -->
         <section>
         <table class="proyectos-table" id="projectsTable">
             <thead>
                 <tr>
-                    <th>ID Proyecto</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Presupuesto</th>
+                    <th>Codigo </th>
+                    <th>Proyecto</th>
+                    <th>Descripcion </th>
+                    <th>Ingeniero</th>
+                    <th>Fecha</th>        
                     <th>Acciones</th> <!-- Columna para los botones -->
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($proyectos as $d):?>
+            <?php foreach ($solicitudes as $d):?>
                 <tr>
-                    <td data-label="ID Proyecto"><?php echo $d->proyecto_id   ?></td>
-                    <td data-label="Nombre"><?php echo $d->nombre  ?></td>
-                    <td data-label="Descripción"><?php echo $d->descripcion  ?></td>
-                    <td data-label="Fecha Inicio"><?php echo $d->fecha_inicio  ?></td>
-                    <td data-label="Fecha Fin"><?php echo $d->fecha_fin  ?></td>
-                    <td data-label="Presupuesto"><?php echo $d->presupuesto  ?></td>
+                    <td data-label="Codigo"><?php echo $d->id_solicitudes      ?></td>
+                    <td data-label="Proyecto "><?php echo $d->pronombre  ?></td>
+                    <td data-label="Proyecto"><?php echo $d->descrip_solicitud   ?></td>
+                    <td data-label="Ingeniero"><?php echo $d->usunombre   ?></td>
+                    <td data-label="Fecha"><?php echo $d->fecha_solicitud  ?></td>  
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <button class="btn-actualizarr" id="mostrardetalleproyecto" value="<?php echo $d->proyecto_id ?>">Ver</button>
-                 </td>
+                        <button id="respondersolicitud" class="btn-actualizar">Aprobar solicitud</button>                        
+                    </td>
                 </tr>               
                 <?php endforeach; ?>  
             </tbody>
@@ -57,12 +54,6 @@
 </section>
 
 
-
-<!-- Modal (inicialmente oculto) -->
-<div id="modalProyecto">
-    
-</div>
-  
     </div>
 
     <!-- Script de búsqueda -->
@@ -103,6 +94,15 @@
                 formSection.style.display = "none";
             }
         }
+
+
+
+     $('#proyec').select2({
+        placeholder: "Buscar Proyecto...",  // Texto que aparece cuando el select está vacío
+        allowClear: true  // Permite borrar la selección
+    });
     </script>
 
 </div>   
+
+

@@ -1,3 +1,7 @@
+
+
+
+
 // Cargar el contenido del header y footer desde los archivos HTML
 function cargarComponentes() {
   // Cargar el archivo header.html
@@ -70,9 +74,28 @@ function cerrarMenu() {
   });
 }
 
+
+
+
+
+//Modal Cargar Detalles del proyecto
+$("body").on("click","#mostrardetalleproyecto",function(e){
+  e.preventDefault();    
+   var datos = {'proyecto_id': $(this).attr('value')};
+  $("#modalProyecto").load("../../informes/detalle.php", datos).modal("show");  
+ 
+});
+
+
+
 // Cargar contenido dinámico al hacer clic en las opciones de menú
 function cargarContenido() {
   $(document).ready(function() {
+
+    
+
+
+
       // Cargar el contenido inicial
       $("#contenido").load("../../crub_proyecto/proyecto.php");
       $("#contenido2").load("../../crub_proyecto/ver_proyectos.php");
@@ -356,12 +379,77 @@ function cargarContenido() {
     e.preventDefault();
     $.ajax({
       success: function(){
-        $("#contenido").load("../../informes/informes.php");
+        $("#contenido").load("../../crub_proyecto/ver_proyectos.php");
       }
     });
   });  
 
 
+
+  //  SOLICITUDES INGENIEROS
+
+
+  $("body").on("click","#solicitudes-materiales",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido").load("../../crud_solicitudes/versolicitudes.php");
+      }
+    });
+  });  
+
+  $("body").on("click","#Solicitudes",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido2").load("../../crud_solicitudes/solicitud.php");
+      }
+    });
+  });  
+
+
+  $("body").on("click","#verproyectos",function(e){
+    e.preventDefault();
+    $.ajax({
+      success: function(){
+        $("#contenido2").load("../../crub_proyecto/ver_proyectos.php");
+      }
+    });
+  });  
+
+  $("body").on("click","#guardarsolisitud",function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "../../crud_solicitudes/guardar.php",
+      data: $("#formularios").serialize(),
+      success: function(){
+        $("#contenido2").load("../../crud_solicitudes/solicitud.php");
+      }
+    });
+  });
+
+
+  $("body").on("click","#eliminarsolicitudes",function(e){
+    e.preventDefault();
+    var datos = {'codigo': $(this).attr('value')};
+    alert(datos.codigo);
+    $.ajax({
+      type: "POST",
+      url: "../../crud_solicitudes/eliminar.php",
+      data: datos,
+      success: function(){
+        $("#contenido2").load("../../crud_solicitudes/solicitud.php");
+      }
+    });
+  });
+
+  
+
+
+
+
+  
 
 
 
@@ -380,5 +468,6 @@ document.addEventListener('DOMContentLoaded', function() {
   cargarContenido(); // Configurar la carga de contenido dinámico
  
 });
+
 
 

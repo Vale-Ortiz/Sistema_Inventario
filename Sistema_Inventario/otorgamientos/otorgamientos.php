@@ -8,7 +8,7 @@
      $iduser = $_SESSION['usuario_id']; 
      $total=0;     
 ?>
-<div><br><br><br><br> 
+<div><br><br><br><br>
         <!-- Formulario para agregar proyectos -->
         <section class="form-section" id="formSection">
             <h2>Otorgamiento de Materiales</h2>

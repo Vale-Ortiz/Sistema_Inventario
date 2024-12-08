@@ -493,3 +493,47 @@ textarea {
     color: #495057; /* Color de texto */
 }
 
+
+.fixed-button {
+    position: fixed;
+    top: 120px; /* Distancia desde el borde superior de la página */
+    right: 20px; /* Distancia desde el borde derecho de la página */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambio de cursor al pasar el ratón */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para el botón */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.fixed-button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+
+
+ /* Estilos del botón */
+ .btn-actualizarr {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-actualizarr:hover {
+    background-color: #45a049;
+}
+
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

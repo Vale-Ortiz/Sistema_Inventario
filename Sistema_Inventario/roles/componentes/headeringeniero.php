@@ -15,6 +15,7 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="#" id="verproyectos">Proyectos</a></li>                                             
+                <li><a href="#" id="Solicitudes">Solicitudes</a></li>                                             
                 <li><a href="#" id="desconectar">Cerrar Sesión</a></li>
             </ul>
             
