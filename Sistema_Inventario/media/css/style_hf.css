@@ -1,0 +1,539 @@
+/* Estilos básicos */
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(../image/login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 20px;
+}
+
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#form-container {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.edit, .delete {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit {
+    color: orange;
+}
+
+.delete {
+    color: red;
+}
+
+
+
+
+header {     
+    position: fixed; /* Fija el menú en la pantalla */
+    top: 0; /* Ubica el menú en la parte superior */
+    left: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho de la página */
+    background-color: rgba(0, 0, 0, 0); /* Fondo semi-transparente */
+    color: black; /* Color del texto */
+    padding: 15px 20px;
+    z-index: 1000; /* Asegura que esté sobre otros elementos, como el slider */
+    margin-bottom: 90px; /* Añade espacio hacia abajo */   
+    gap: 100px; /* Espacio entre elementos flexibles */
+    
+    
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.logo {
+    width: 90px; /* Ajusta el ancho base del logo */
+    max-width: 90%; /* Permite que el logo se ajuste sin exceder el tamaño del contenedor */
+    height: auto; /* Mantiene la proporción original */
+    display: block;
+  
+    margin-right: 10px;
+}
+
+nav {
+    margin: auto;
+    
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-links li {
+    margin: 0 10px;
+    
+}
+
+.nav-links a {
+    color: #5c0606;
+    text-decoration: none;
+    padding: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    color: #000;
+    padding: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 20px; /* Bordes redondeados */
+}
+
+/* Efecto al pasar el mouse */
+.nav-links a:hover {
+    background-color: #b4cfec; /* Color de fondo al pasar el mouse */
+    color: black; /* Color del texto al pasar el mouse */
+   
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostrar botón en pantallas pequeñas */
+    }
+
+    nav ul {
+        display: none; /* Oculta el menú inicialmente */
+        flex-direction: column;
+        position: absolute;
+        top: 90px;
+        right: 0;
+        background-color: #333;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .nav-links.show-menu {
+        display: flex; /* Muestra el menú cuando está activo */
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 30px 0;
+    font-family: Arial, sans-serif;
+    clear: both; /* Esto asegura que el footer no quede encima de elementos flotantes */
+    margin-top: 130px; /* Espacio adicional por si lo necesitas */
+  }
+  
+  footer p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  footer a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+    color: #425161;
+  }
+  
+  .container {
+    margin-top: 80px; /* Espacio antes del contenedor */   
+  }
+ 
+ 
+  
+/* Estilo para el botón "Cerrar Sesión" */
+.logout-btn {
+    background-color:blue; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 10px; /* Espaciado interno */
+    font-size: 1.3em;
+    cursor: pointer; /* Cambia el cursor a mano al pasar por encima */
+    width: 100%; /* Hace que el botón ocupe todo el ancho del contenedor */
+    text-align: center; /* Centra el texto */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición al pasar el ratón */
+   
+}
+
+
+
+
+
+
+
+
+/* Estilo para el formulario proyecto */
+
+
+/* Estilo para el contenedor del encabezado */
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+/* Estilos para el contenedor del encabezado */
+
+
+
+/* Estilos para el formulario */
+.form-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1em;
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    padding: 10px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b4cfec;
+}
+
+/* Estilos para la tabla */
+.proyectos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.proyectos-table th, .proyectos-table td {
+    border: 0px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.proyectos-table th {
+    background-color: #3b3b3a;
+    color: white;
+    font-size: 1.1em;
+}
+
+.proyectos-table td {
+    background-color: #fff;
+}
+
+.proyectos-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.proyectos-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Hacer que la tabla sea responsiva */
+@media screen and (max-width: 768px) {
+    .proyectos-table {
+        font-size: 14px;
+    }
+
+    .proyectos-table thead {
+        display: none; /* Ocultar los encabezados de la tabla */
+    }
+
+    .proyectos-table, .proyectos-table tbody, .proyectos-table tr, .proyectos-table td {
+        display: block; /* Hacer que los elementos se comporten como bloques */
+        width: 100%;
+    }
+
+    .proyectos-table tr {
+        margin-bottom: 15px; /* Separar las filas para que no se vean tan apretadas */
+    }
+
+    .proyectos-table td {
+        position: relative;
+        padding-left: 50%; /* Espacio para los labels */
+        text-align: right;
+    }
+
+    .proyectos-table td:before {
+        /* Agregar una etiqueta antes de cada celda */
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }
+
+    #searchInput {
+        width: 100%; /* Expandir el campo de búsqueda en pantallas pequeñas */
+    }
+}
+
+
+/* Definir el estilo para el formulario utilizando Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas, una para cada lado */
+    gap: 16px; /* Espacio entre las columnas */
+    max-width: 900px; /* Limitar el ancho máximo del formulario */
+    margin: 0 auto; /* Centrar el formulario */
+}
+
+
+/* Agrupar los campos de fecha en una fila */
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas en la misma fila */
+    gap: 8px; /* Espacio entre los dos campos de fecha */
+}
+
+/* Estilo para las etiquetas */
+label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Espacio debajo de las etiquetas */
+}
+
+/* Estilo para los campos de entrada */
+input, textarea, select, .btn1 {
+    width: 100%; /* Hacer que los campos ocupen todo el ancho disponible */
+    padding: 10px;
+    margin-bottom: 16px; /* Espacio debajo de cada input */
+    box-sizing: border-box;
+}
+
+
+/* Estilo para el área de texto */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+
+
+/* Estilo para el botón de actualizar */
+.btn-actualizar {
+    background-color: #fff; /* Color verde */
+    border: 1px solid #000;
+    color: black;
+}
+
+
+/* Estilo para el botón de eliminar */
+.btn-eliminar {
+    background-color: #fff; /* Color rojo */
+    border: 1px solid #000;
+    color: black;
+}
+
+#rol {
+    width: 450px; /* Ancho del select */
+    height: 45px; /* Alto del select */
+    font-size: 18px; /* Tamaño de la fuente dentro del select */
+    padding: 10px 15px; /* Espaciado interno del select */
+    border: 2px solid #007BFF; /* Borde azul */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f0f8ff; /* Fondo azul claro */
+    color: #495057; /* Color de texto */
+}
+
+
+.fixed-button {
+    position: fixed;
+    top: 120px; /* Distancia desde el borde superior de la página */
+    right: 20px; /* Distancia desde el borde derecho de la página */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambio de cursor al pasar el ratón */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para el botón */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.fixed-button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+
+
+ /* Estilos del botón */
+ .btn-actualizarr {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-actualizarr:hover {
+    background-color: #45a049;
+}
+
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

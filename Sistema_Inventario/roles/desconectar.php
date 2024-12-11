@@ -1,0 +1,10 @@
+<?php 
+session_start();
+if($_SESSION['usuario_id']){	
+	session_destroy();
+	header("location:../login/loginn.php");
+}
+else{
+	header("location:../login/loginn.php");
+}
+?>
