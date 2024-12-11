@@ -7,8 +7,9 @@
 ?>
 <div> <br><br> 
             <br>
-            <br>        
+            <br>      
             <h2>Lista de Solicitudes</h2>  
+
 <div class="header-content">
         
         <!-- Campo de búsqueda -->
