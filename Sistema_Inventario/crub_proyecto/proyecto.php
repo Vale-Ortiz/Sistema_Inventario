@@ -1,9 +1,9 @@
 <?php
     session_start(); 
-      include("../conexion/b.php");
-     
+      include("../conexion/b.php");  
        
      $proyectos = $bd->query('SELECT * FROM proyectos ORDER BY proyecto_id  desc' )->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 <div> <br><br> 
             <br>

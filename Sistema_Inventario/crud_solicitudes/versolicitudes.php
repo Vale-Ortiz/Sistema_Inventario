@@ -10,8 +10,8 @@
 ?>
 <div> <br><br> 
             <br>
-            <br>        
-            <h2>Listar Solicitudes</h2>  
+            <br>  
+            <h2>Lista de Solicitudes</h2>  
  <div class="header-content">
         
         <!-- Campo de búsqueda -->
@@ -37,11 +37,12 @@
             <tbody>
             <?php foreach ($solicitudes as $d):?>
                 <tr>
-                    <td data-label="Codigo"><?php echo $d->id_solicitudes      ?></td>
-                    <td data-label="Proyecto "><?php echo $d->pronombre  ?></td>
-                    <td data-label="Proyecto"><?php echo $d->descrip_solicitud   ?></td>
-                    <td data-label="Ingeniero"><?php echo $d->usunombre   ?></td>
-                    <td data-label="Fecha"><?php echo $d->fecha_solicitud  ?></td>  
+                    <td data-label="Codigo"><?php echo $d->id_solicitudes?></td>
+                    <td data-label="Proyecto "><?php echo $d->pronombre?></td>
+                    <td data-label="Proyecto"><?php echo $d->descrip_solicitud?></td>
+                    <td data-label="Ingeniero"><?php echo $d->usunombre?></td>
+                    <td data-label="Fecha"><?php echo $d->fecha_solicitud ?></td>  
+
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
                         <button id="respondersolicitud" class="btn-actualizar">Aprobar solicitud</button>                        
