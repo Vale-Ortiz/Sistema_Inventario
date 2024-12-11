@@ -69,12 +69,8 @@
                     <td data-label="Email"><?php echo $d->email  ?></td>                    
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <form method="post" class="d-inline" onsubmit="return confirm ('¿Estas seguro de que deseas eliminar el proveedor');">
-                            <input type="hidden" name="id_producto" value="<?= $row['usuario_id'] ?>">
-                            <button type="submit" class="btn btn-danger btn-sm" name="eliminar_producto">Eliminar</button>
-                        </form>
-                        <!-- Botones de acción para cada proyecto -->
                         <button id="editarproveedor" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                        <button id="eliminarproveedor" class="btn-eliminar" value="<?php echo $d->proveedor_id ?>">Eliminar</button>
                     </td>
                 </tr>               
                 <?php endforeach; ?>  
