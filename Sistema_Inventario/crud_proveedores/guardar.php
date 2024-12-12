@@ -1,5 +1,6 @@
 <?php 
 include("../conexion/b.php");
+
 $r1 = $_POST['nit'];
 $r2 = $_POST['nombre']; 
 $r3 = $_POST['direccion']; 

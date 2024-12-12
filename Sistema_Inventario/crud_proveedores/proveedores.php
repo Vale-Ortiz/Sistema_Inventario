@@ -3,6 +3,7 @@
       include("../conexion/b.php");
               
      $proveedores = $bd->query('SELECT * FROM proveedores ORDER BY proveedor_id  desc' )->fetchAll(PDO::FETCH_OBJ);
+     
 ?>
 <div> <br><br> 
             <br>
@@ -37,8 +38,6 @@
                 <button id="guardarproveedores" class="btn1" type="submit">Guardar Proveedor</button> 
                 </div>
                 
-                
-               
             </form>
         </section>
 
@@ -82,6 +81,7 @@
 
     </div>
 
+    
     <!-- Script de búsqueda -->
     <script>
         function searchProjects() {
