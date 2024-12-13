@@ -73,20 +73,24 @@
                     <td data-label="Fecha Fin"><?php echo $d->fecha_fin  ?></td>
                     <td data-label="Presupuesto"><?php echo $d->presupuesto  ?></td>
                     <td data-label="Acciones">
-                        <!-- Botones de acción para cada proyecto -->
-                        <button id="editarproyecto" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                        <!-- Botones de acción para cada proyecto -->                                                      
+                        <button id="editarproyecto" data-r1="<?php echo $d->proyecto_id?>"
+                                                            data-r2="<?php echo $d->nombre?>"
+                                                            data-r3="<?php echo $d->descripcion?>"
+                                                            data-r4="<?php echo $d->fecha_inicio ?>"
+                                                            data-r5="<?php echo $d->fecha_fin ?>"
+                                                            data-r6="<?php echo $d->presupuesto ?>" class="btn-actualizar" >Actualizar</button>
                         <button id="eliminarproyecto" class="btn-eliminar" value="<?php echo $d->proyecto_id ?>">Eliminar</button>
                     </td>
                 </tr>               
                 <?php endforeach; ?>  
-            </tbody>
+            </tbody>            
         </table>
+    </section>
 
-</section>
 
 
     </div>
-
     <!-- Script de búsqueda -->
     <script>
         function searchProjects() {

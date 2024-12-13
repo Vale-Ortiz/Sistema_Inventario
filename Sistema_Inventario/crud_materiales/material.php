@@ -75,7 +75,12 @@
                     <td data-label="proveedor"><?php echo $d->provee   ?></td>                    
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <button id="editarmaterial" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                        <button id="editarmaterial" data-r1="<?php echo $d->material_id?>"
+                                                            data-r2="<?php echo $d->nombre?>"
+                                                            data-r3="<?php echo $d->descripcion?>"
+                                                            data-r4="<?php echo $d->stock ?>"
+                                                            data-r5="<?php echo $d->precio ?>"
+                                                            data-r6="<?php echo $d->provee ?>" class="btn-actualizar" >Actualizar</button>
                         <button id="eliminarmaterial" class="btn-eliminar" value="<?php echo $d->material_id ?>">Eliminar</button>
                     </td>
                 </tr>               

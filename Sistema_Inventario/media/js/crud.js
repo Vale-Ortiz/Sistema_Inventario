@@ -70,10 +70,6 @@ function cerrarMenu() {
   });
 }
 
-
-
-
-
 //Modal Cargar Detalles del proyecto
 $("body").on("click","#mostrardetalleproyecto",function(e){
   e.preventDefault();    
@@ -82,19 +78,14 @@ $("body").on("click","#mostrardetalleproyecto",function(e){
  
 });
 
-
-
 // Cargar contenido dinámico al hacer clic en las opciones de menú
 function cargarContenido() {
   $(document).ready(function() {
 
-    
-
-
-
       // Cargar el contenido inicial
       $("#contenido").load("../../crub_proyecto/proyecto.php");
       $("#contenido2").load("../../crub_proyecto/ver_proyectos.php");
+      
 
       // CRUD PROYECTOS Cargar contenido de proyectos
           $("body").on("click","#proyectos",function(e){
@@ -113,8 +104,35 @@ function cargarContenido() {
                 $("#contenido").load("../../crub_proyecto/ver_proyectos.php");
               }
             });
-          });       
+          });   
 
+          //Modal Cargar Detalles del proyecto
+        
+          $("body").on("click","#editarproyecto",function(e){
+          e.preventDefault();
+          var datos = {'r1' : $(this).attr('data-r1'),
+                      'r2' : $(this).attr('data-r2'),
+                      'r3' : $(this).attr('data-r3'),
+                      'r4' : $(this).attr('data-r4'),
+                      'r5' : $(this).attr('data-r5'),
+                      'r6' : $(this).attr('data-r6'),
+                    };
+                    $("#contenido").load("../../crub_proyecto/actualizar.php",datos);
+              });
+
+              $("body").on("click","#actualizarproyecto",function(e){
+                e.preventDefault();
+                $.ajax({
+                  type: "POST",
+                  url: "../../crub_proyecto/guardarcambios.php",
+                  data: $("#formulario").serialize(),
+                  success: function(){
+                    $("#contenido").load("../../crub_proyecto/proyecto.php");
+                  }
+                });
+              });
+                      
+          
           $("body").on("click","#guardarproyecto",function(e){
             e.preventDefault();
             $.ajax({
@@ -152,9 +170,9 @@ function cargarContenido() {
                 alert("El proyecto no fue eliminado.");
             }
         });
+        
 
-           
-          // CRUD USUARIOS Cargar contenido de usuarios        
+           // CRUD USUARIOS Cargar contenido de usuarios        
           $("body").on("click","#usuarios",function(e){
             e.preventDefault();
             $.ajax({
@@ -163,6 +181,29 @@ function cargarContenido() {
               }
             });
           });      
+
+          $("body").on("click","#editarusuario",function(e){
+            e.preventDefault();
+            var datos = {'r1' : $(this).attr('data-r1'),
+                        'r2' : $(this).attr('data-r2'),
+                        'r3' : $(this).attr('data-r3'),
+                        'r4' : $(this).attr('data-r4'),
+                        'r5' : $(this).attr('data-r5'),
+                      };
+                      $("#contenido").load("../../crub_usuarios/actualizar.php",datos);
+                });
+  
+                $("body").on("click","#actualizarusuario",function(e){
+                  e.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "../../crub_usuarios/guardarcambios.php",
+                    data: $("#formularios").serialize(),
+                    success: function(){
+                      $("#contenido").load("../../crub_usuarios/usuarios.php");
+                    }
+                  });
+                });
 
           $("body").on("click","#guardarusuario",function(e){
             e.preventDefault();
@@ -202,7 +243,6 @@ function cargarContenido() {
             }
         });
 
-
            // CRUD Proveedores Cargar contenido de proveedores        
            $("body").on("click","#proveedores",function(e){
             e.preventDefault();
@@ -212,7 +252,7 @@ function cargarContenido() {
               }
             });
           });
-      
+
           $("body").on("click","#guardarproveedores",function(e){
             e.preventDefault();
             $.ajax({
@@ -261,9 +301,8 @@ function cargarContenido() {
               }
             });
           });
-  });
+     });
 }
-
 
             // CRUD MATERIALES Cargar contenido de Materiales         
             $("body").on("click","#materiales",function(e){
@@ -274,17 +313,44 @@ function cargarContenido() {
       }
     });
           });
+          
+
+          $("body").on("click","#editarmaterial",function(e){
+            e.preventDefault();
+            var datos = {'r1' : $(this).attr('data-r1'),
+                        'r2' : $(this).attr('data-r2'),
+                        'r3' : $(this).attr('data-r3'),
+                        'r4' : $(this).attr('data-r4'),
+                        'r5' : $(this).attr('data-r5'),
+                        'r6' : $(this).attr('data-r6'),
+                      };
+                      $("#contenido").load("../../crub_materiales/actualizar.php",datos);
+                });
+  
+                $("body").on("click","#actualizarmaterial",function(e){
+                  e.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "../../crub_materiales/guardarcambios.php",
+                    data: $("#formularios").serialize(),
+                    success: function(){
+                      $("#contenido").load("../../crub_materiales/usuarios.php");
+                    }
+                  });
+                });
+      
+                        
 
             $("body").on("click","#guardarmaterial",function(e){
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "../../crud_materiales/guardar.php",
-      data: $("#formularios").serialize(),
-      success: function(){
-        $("#contenido").load("../../crud_materiales/material.php");
-      }
-    });
+            e.preventDefault();
+            $.ajax({
+            type: "POST",
+            url: "../../crud_materiales/guardar.php",
+            data: $("#formularios").serialize(),
+            success: function(){
+            $("#contenido").load("../../crud_materiales/material.php");
+            }
+          });
           });
 
 
@@ -338,11 +404,11 @@ function cargarContenido() {
     e.preventDefault();
     var datos = {'operacion': $(this).attr('name'),
            'numser_codigo': $("#numser_codigo").val(),             
-           'cantidad': $("#cantidad").val(),             
-           
+           'cantidad': $("#cantidad").val(),           
           };
           $("#contenido").load("../../otorgamientos/otorgamientos.php", datos);
           });
+
 
           // ------- Boton Eliminar Cada Material Agregado ------------ //
             $("body").on("click","#eliminarDetallematerial",function(e){
@@ -427,15 +493,15 @@ function cargarContenido() {
           });  
 
             $("body").on("click","#guardarsolisitud",function(e){
-    e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "../../crud_solicitudes/guardar.php",
-      data: $("#formularios").serialize(),
-      success: function(){
-        $("#contenido2").load("../../crud_solicitudes/solicitud.php");
-      }
-    });
+            e.preventDefault();
+            $.ajax({
+            type: "POST",
+            url: "../../crud_solicitudes/guardar.php",
+            data: $("#formularios").serialize(),
+            success: function(){
+            $("#contenido2").load("../../crud_solicitudes/solicitud.php");
+            }
+              });
           });
 
 

@@ -1,15 +1,36 @@
 <?php 
 include("../conexion/b.php");
-$detalleproyecto = $bd->query('SELECT otorgamientos.otorgamiento_id,otorgamientos.proyecto_id, proyectos.proyecto_id,proyectos.nombre as nompro,proyectos.descripcion,proyectos.fecha_inicio, proyectos.fecha_fin,proyectos.presupuesto, otorgamientos.fecha, otorgamientos.usuario_id as  ususu
-, usuarios.nombre as  usr, detalle_otorgamientos.id_otorgamiento, detalle_otorgamientos.otorgamiento, detalle_otorgamientos.material, 
-materiales.material_id, materiales.nombre as mannon, materiales.precio, detalle_otorgamientos.cantidad 
- FROM otorgamientos,proyectos,usuarios,detalle_otorgamientos, materiales WHERE otorgamientos.proyecto_id=proyectos.proyecto_id
-  AND otorgamientos.usuario_id= usuarios.usuario_id AND otorgamientos.otorgamiento_id= detalle_otorgamientos.otorgamiento
-   AND detalle_otorgamientos.material = materiales.material_id AND otorgamientos.proyecto_id ='.$_POST['proyecto_id'].'
-            ')->fetchAll(PDO::FETCH_OBJ);
+
+// Inicializar variables con valores predeterminados
+$d1 = $d2 = $d3 = $d4 = $d5 = $d8 = $d9 = "No asignado";
+$detalleproyecto = $bd->query('SELECT otorgamientos.otorgamiento_id, otorgamientos.proyecto_id, proyectos.proyecto_id, proyectos.nombre 
+as nompro, proyectos.descripcion, proyectos.fecha_inicio, proyectos.fecha_fin, proyectos.presupuesto, otorgamientos.fecha, otorgamientos.usuario_id 
+as ususu, usuarios.nombre 
+as usr, detalle_otorgamientos.id_otorgamiento, detalle_otorgamientos.otorgamiento, detalle_otorgamientos.material, materiales.material_id, materiales.nombre 
+as mannon, materiales.precio, detalle_otorgamientos.cantidad 
+ FROM otorgamientos, proyectos, usuarios, detalle_otorgamientos, materiales 
+ WHERE otorgamientos.proyecto_id = proyectos.proyecto_id
+   AND otorgamientos.usuario_id = usuarios.usuario_id 
+   AND otorgamientos.otorgamiento_id = detalle_otorgamientos.otorgamiento
+   AND detalle_otorgamientos.material = materiales.material_id 
+   AND otorgamientos.proyecto_id = ' . $_POST['proyecto_id']
+)->fetchAll(PDO::FETCH_OBJ);
 
 $idproyectos = $_POST['proyecto_id'];
- $tota=0;
+$tota = 0;
+
+// Asignar valores solo si existen registros
+if (!empty($detalleproyecto)) {
+    foreach ($detalleproyecto as $deta) { 
+        $d1 = $deta->nompro;
+        $d2 = $deta->proyecto_id;
+        $d3 = $deta->fecha_inicio;
+        $d4 = $deta->fecha_fin;
+        $d5 = $deta->presupuesto;
+        $d8 = $deta->fecha;
+        $d9 = $deta->usr;
+    }
+}
 ?>        
   <style>
        
@@ -92,43 +113,29 @@ $idproyectos = $_POST['proyecto_id'];
         }
     </style>      
 
-<?php foreach($detalleproyecto as $deta):?> 
-
-<?php 
- $d1=$deta->nompro;
- $d2=$deta->proyecto_id;
- $d3=$deta->fecha_inicio;
- $d4=$deta->fecha_fin;
- $d5=$deta->presupuesto;
- $d8=$deta->fecha;
- $d9=$deta->usr;
- ?>
-
-<?php endforeach; ?> 
 <div class="container">
     <div>
-        <h5>Fecha Otorgamiento <?php echo $d8; ?></h5>
-
+        <h5>Fecha Otorgamiento: <?php echo htmlspecialchars($d8); ?></h5>
         <table class="table table-bordered table-hover">
             <tr>
                 <th>#Proyecto:</th>
-                <td><?php echo $d2 ?></td>
+                <td><?php echo htmlspecialchars($d2); ?></td>
             </tr>
             <tr>
                 <th>Proyecto:</th>
-                <td><?php echo $d1 ?></td>
+                <td><?php echo htmlspecialchars($d1); ?></td>
             </tr>
             <tr>
                 <th>Fecha Inicio:</th>
-                <td><?php echo $d3 ?></td>
+                <td><?php echo htmlspecialchars($d3); ?></td>
             </tr>
             <tr>
                 <th>Fecha Fin:</th>
-                <td><?php echo $d4 ?></td>
+                <td><?php echo htmlspecialchars($d4); ?></td>
             </tr>
             <tr>
                 <th>Presupuesto:</th>
-                <td><?php echo $d5 ?></td>
+                <td><?php echo htmlspecialchars($d5); ?></td>
             </tr>
         </table>
 
@@ -142,17 +149,15 @@ $idproyectos = $_POST['proyecto_id'];
                     <td>Valor</td>
                     <td>Subtotal</td>
                 </tr>
-                <?php foreach($detalleproyecto as $deto): ?>
+                <?php foreach ($detalleproyecto as $deto): ?>
                     <tr>
-                        <td><?php echo $deto->material_id ?></td>
-                        <td><?php echo $deto->mannon ?></td>
-                        <td><?php echo $deto->cantidad ?></td>
-                        <td><?php echo $deto->precio ?></td>
-                        <td><?php echo $deto->precio * $deto->cantidad ?></td>
+                        <td><?php echo htmlspecialchars($deto->material_id); ?></td>
+                        <td><?php echo htmlspecialchars($deto->mannon); ?></td>
+                        <td><?php echo htmlspecialchars($deto->cantidad); ?></td>
+                        <td><?php echo htmlspecialchars($deto->precio); ?></td>
+                        <td><?php echo htmlspecialchars($deto->precio * $deto->cantidad); ?></td>
                     </tr>
-                    <?php 
-                        $tota = $tota + ($deto->precio * $deto->cantidad);
-                    ?>
+                    <?php $tota += $deto->precio * $deto->cantidad; ?>
                 <?php endforeach; ?>
             </table>
             
