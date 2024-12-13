@@ -70,7 +70,11 @@
                     <td data-label="Contraseña"><?php echo str_repeat('.', 5); ?></td>
                     <td data-label="Rol"><?php echo $d->rol  ?></td>                    
                     <td data-label="Acciones">
-                    <button id="editarusuario" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                    <button id="editarusuario" data-r1="<?php echo $d->usuario_id?>"
+                                                            data-r2="<?php echo $d->nombre?>"
+                                                            data-r3="<?php echo $d->correo?>"
+                                                            data-r4="<?php echo $d->$contraseña_hash?>"
+                                                            data-r5="<?php echo $d->rol ?>"class="btn-actualizar" >Actualizar</button>
                     <button id="eliminarusuario" class="btn-eliminar" value="<?php echo $d->usuario_id ?>">Eliminar</button>
                     </td>
                 <?php endforeach; ?>  

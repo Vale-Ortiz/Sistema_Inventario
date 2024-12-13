@@ -16,11 +16,9 @@
             <br>
         
             <h2>Actualizar datos del Proyecto</h2>  
-<div class="header-content">
-        
-
+<div class="header-content">  
     </div>
-        <!-- Formulario para agregar proyectos -->
+        <!-- Formulario para Actualizar proyectos -->
         <section class="form-section" >
             <h2>Actualizar</h2>
             <form id="formulario" class="form-grid">

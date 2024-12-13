@@ -182,6 +182,29 @@ function cargarContenido() {
             });
           });      
 
+          $("body").on("click","#editarusuario",function(e){
+            e.preventDefault();
+            var datos = {'r1' : $(this).attr('data-r1'),
+                        'r2' : $(this).attr('data-r2'),
+                        'r3' : $(this).attr('data-r3'),
+                        'r4' : $(this).attr('data-r4'),
+                        'r5' : $(this).attr('data-r5'),
+                      };
+                      $("#contenido").load("../../crub_usuarios/actualizar.php",datos);
+                });
+  
+                $("body").on("click","#actualizarusuario",function(e){
+                  e.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "../../crub_usuarios/guardarcambios.php",
+                    data: $("#formularios").serialize(),
+                    success: function(){
+                      $("#contenido").load("../../crub_usuarios/usuarios.php");
+                    }
+                  });
+                });
+
           $("body").on("click","#guardarusuario",function(e){
             e.preventDefault();
             $.ajax({
@@ -229,7 +252,7 @@ function cargarContenido() {
               }
             });
           });
-      
+
           $("body").on("click","#guardarproveedores",function(e){
             e.preventDefault();
             $.ajax({
@@ -290,6 +313,33 @@ function cargarContenido() {
       }
     });
           });
+          
+
+          $("body").on("click","#editarmaterial",function(e){
+            e.preventDefault();
+            var datos = {'r1' : $(this).attr('data-r1'),
+                        'r2' : $(this).attr('data-r2'),
+                        'r3' : $(this).attr('data-r3'),
+                        'r4' : $(this).attr('data-r4'),
+                        'r5' : $(this).attr('data-r5'),
+                        'r6' : $(this).attr('data-r6'),
+                      };
+                      $("#contenido").load("../../crub_materiales/actualizar.php",datos);
+                });
+  
+                $("body").on("click","#actualizarmaterial",function(e){
+                  e.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "../../crub_materiales/guardarcambios.php",
+                    data: $("#formularios").serialize(),
+                    success: function(){
+                      $("#contenido").load("../../crub_materiales/usuarios.php");
+                    }
+                  });
+                });
+      
+                        
 
             $("body").on("click","#guardarmaterial",function(e){
             e.preventDefault();
