@@ -47,7 +47,9 @@
                     <td data-label="Presupuesto"><?php echo $d->presupuesto  ?></td>
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
+
                         <button class="btn-actualizar" id="mostrardetalleproyecto" value="<?php echo $d->proyecto_id ?>">Ver</button>
+
                  </td>
                 </tr>               
                 <?php endforeach; ?>  
