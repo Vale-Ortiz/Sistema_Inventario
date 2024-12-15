@@ -3,7 +3,13 @@
       include("../conexion/b.php");
       $iduser = $_SESSION['usuario_id'];
  $proyectos = $bd->query('SELECT * FROM proyectos' )->fetchAll(PDO::FETCH_OBJ);
-  $solicitudes = $bd->query('SELECT solicitudes.id_solicitudes,proyectos.nombre as pronombre,solicitudes.descrip_solicitud, usuarios.nombre as usunombre, solicitudes.fecha_solicitud  FROM solicitudes, proyectos, usuarios WHERE solicitudes.proyecto_solicitud = proyectos.proyecto_id AND solicitudes.user_solicitud = usuarios.usuario_id AND user_solicitud= '.$iduser.' ORDER BY id_solicitudes   desc' )->fetchAll(PDO::FETCH_OBJ);
+  $solicitudes = $bd->query('SELECT solicitudes.id_solicitudes,proyectos.nombre 
+  as pronombre,solicitudes.descrip_solicitud, usuarios.nombre 
+  as usunombre, solicitudes.fecha_solicitud  
+  FROM solicitudes, proyectos, usuarios 
+  WHERE solicitudes.proyecto_solicitud = proyectos.proyecto_id 
+  AND solicitudes.user_solicitud = usuarios.usuario_id 
+  AND user_solicitud= '.$iduser.' ORDER BY id_solicitudes   desc' )->fetchAll(PDO::FETCH_OBJ);
 ?>
 <div> <br><br> 
             <br>
@@ -41,7 +47,7 @@
                 <br><br>
                 <input style="visibility: hidden;" type="text" name="usua" id="usua" value="<?php echo $iduser; ?>" class="form-control" readonly>
 
-                <button id="guardarsolisitud" class="btn1soli" type="submit">Enviar Solicitud</button> 
+                <button id="guardarsolisitud" class="btn1" type="submit">Enviar Solicitud</button> 
                 </div>
                 
             </form>
@@ -70,9 +76,7 @@
                     <td data-label="Proyecto"><?php echo $d->descrip_solicitud   ?></td>
                     <td data-label="Ingeniero"><?php echo $d->usunombre   ?></td>
                     <td data-label="Fecha"><?php echo $d->fecha_solicitud  ?></td>  
-                    <td data-label="Acciones">
-                        <!-- Botones de acción para cada proyecto -->
-                        <button id="editarsolicitudes" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                    <td data-label="Acciones">                        
                         <button id="eliminarsolicitudes" class="btn-eliminar" value="<?php echo $d->id_solicitudes ?>">Eliminar</button>
                     </td>
                 </tr>               

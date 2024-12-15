@@ -31,7 +31,6 @@
                     <th>Descripcion </th>
                     <th>Ingeniero</th>
                     <th>Fecha</th>        
-                    <th>Acciones</th> <!-- Columna para los botones -->
                 </tr>
             </thead>
             <tbody>
@@ -42,11 +41,6 @@
                     <td data-label="Proyecto"><?php echo $d->descrip_solicitud?></td>
                     <td data-label="Ingeniero"><?php echo $d->usunombre?></td>
                     <td data-label="Fecha"><?php echo $d->fecha_solicitud ?></td>  
-
-                    <td data-label="Acciones">
-                        <!-- Botones de acción para cada proyecto -->
-                        <button id="respondersolicitud" class="btn-actualizar">Aprobar solicitud</button>                        
-                    </td>
                 </tr>               
                 <?php endforeach; ?>  
             </tbody>

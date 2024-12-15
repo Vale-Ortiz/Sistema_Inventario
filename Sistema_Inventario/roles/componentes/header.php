@@ -1,8 +1,9 @@
 <?php      
  session_start(); 
-   if (isset($_SESSION['rol'])) {
-       // La sesión está activa
-       $rol = $_SESSION['rol'];
+ if (isset($_SESSION['rol']) && isset($_SESSION['nombre'])) {
+    // La sesión está activa
+    $rol = $_SESSION['rol'];
+    $nombre = $_SESSION['nombre'];
    } else {
        // No hay sesión activa
        echo "No has iniciado sesión. <a href='login.php'>Iniciar sesión</a>";
@@ -11,7 +12,8 @@
 <header>
     <div class="header-content">
         <img src="../../media/image/Logo.png" alt="Logo de la Empresa" class="logo">
-        <h1><?php echo $rol; ?></h1>
+        <ul class="nav-links"></ulclass><li><a href="#" ><?php echo $rol; ?> <?php echo $nombre; ?></a></li></ul>
+        
         <nav>
             <ul class="nav-links">
                 <li><a href="#" id="proyectos">Proyectos</a></li>

@@ -68,7 +68,12 @@
                     <td data-label="Email"><?php echo $d->email  ?></td>                    
                     <td data-label="Acciones">
                         <!-- Botones de acción para cada proyecto -->
-                        <button id="editarproveedor" class="btn-actualizar" onclick="actualizarProyecto(1)">Actualizar</button>
+                        <button id="editarproveedor" data-r1="<?php echo $d->proveedor_id?>"
+                                                            data-r2="<?php echo $d->nit?>"
+                                                            data-r3="<?php echo $d->nombre?>"
+                                                            data-r4="<?php echo $d->direccion ?>"
+                                                            data-r5="<?php echo $d->telefono ?>"
+                                                            data-r6="<?php echo $d->email?>" class="btn-actualizar" >Actualizar</button>
                         <button id="eliminarproveedor" class="btn-eliminar" value="<?php echo $d->proveedor_id ?>">Eliminar</button>
                     </td>
                 </tr>               

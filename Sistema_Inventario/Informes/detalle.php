@@ -31,7 +31,17 @@ if (!empty($detalleproyecto)) {
         $d9 = $deta->usr;
     }
 }
+
+// Procesar eliminación de material
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_material'])) {
+    $material_id = $_POST['material_id'];
+    $bd->query("DELETE FROM detalle_otorgamientos WHERE material = $material_id AND otorgamiento IN 
+    (SELECT otorgamiento_id FROM otorgamientos WHERE proyecto_id = $idproyectos)");
+    header("Location: " . $_SERVER['PHP_SELF']); // Redirigir para evitar reenvíos
+    exit();
+}
 ?>        
+
   <style>
        
 

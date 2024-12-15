@@ -73,7 +73,7 @@
                     <button id="editarusuario" data-r1="<?php echo $d->usuario_id?>"
                                                             data-r2="<?php echo $d->nombre?>"
                                                             data-r3="<?php echo $d->correo?>"
-                                                            data-r4="<?php echo $d->$contraseña_hash?>"
+                                                            data-r4="<?php echo $d->contraseña?>"
                                                             data-r5="<?php echo $d->rol ?>"class="btn-actualizar" >Actualizar</button>
                     <button id="eliminarusuario" class="btn-eliminar" value="<?php echo $d->usuario_id ?>">Eliminar</button>
                     </td>
