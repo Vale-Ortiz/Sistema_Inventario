@@ -74,7 +74,7 @@
                     <td data-label="Stock"><?php echo $d->precio  ?></td>                    
                     <td data-label="proveedor"><?php echo $d->provee   ?></td>                    
                     <td data-label="Acciones">
-                        <!-- Botones de acción para cada proyecto -->
+                        <!-- Botones de acción para cada material -->
                         <button id="editarmaterial" data-r1="<?php echo $d->material_id?>"
                                                             data-r2="<?php echo $d->nombre?>"
                                                             data-r3="<?php echo $d->descripcion?>"

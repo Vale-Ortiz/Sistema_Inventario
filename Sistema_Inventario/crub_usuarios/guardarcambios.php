@@ -9,6 +9,6 @@ $contraseña_hash = password_hash($r4, PASSWORD_DEFAULT);
 $r5 = $_POST['rol']; 
 
 $bd->query("UPDATE usuarios SET nombre = '$r2', correo ='$r3', 
-contraseña = '$r4', rol ='$r5' WHERE usuario_id = '$r6'");
+contraseña = '$contraseña_hash', rol ='$r5' WHERE usuario_id = '$r1'");
 ?>
 
