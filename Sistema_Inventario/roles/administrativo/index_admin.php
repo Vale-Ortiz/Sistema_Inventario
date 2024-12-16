@@ -2,6 +2,8 @@
 <?php 
 include("../../conexion/b.php");
 
+//Pagina admin
+
     //creamos la sesion 
     session_start(); 
     //validamos si se ha hecho o no el inicio de sesion correctamente 
