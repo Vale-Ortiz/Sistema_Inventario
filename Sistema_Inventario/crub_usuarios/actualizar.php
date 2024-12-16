@@ -40,6 +40,7 @@ $r5 = $_POST['r5'] ?? ''; // Rol
                     <option value="" <?php echo $r5 === '' ? 'selected' : ''; ?>>Seleccione un rol</option>
                     <option value="gestor" <?php echo $r5 === 'gestor' ? 'selected' : ''; ?>>Gestor</option>
                     <option value="ingeniero" <?php echo $r5 === 'ingeniero' ? 'selected' : ''; ?>>Ingeniero</option>
+                    <option value="admin" <?php echo $r5 === 'admin' ? 'selected' : ''; ?>>Admin</option>
                 </select>
                 <br>
                 <button id="actualizarusuario" class="btn1" type="submit">Actualizar usuario</button>
